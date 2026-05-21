@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -14,11 +15,15 @@
 
 body{
     font-family:'Quicksand',sans-serif;
-    height:100vh;
-    overflow:hidden;
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
     position:relative;
+    padding:20px;
 
-    /* ✔️ ORYGINALNE TŁO – BEZ ŻADNEGO ZDJĘCIA */
+    width:100%;
+    max-width:100vw;
+
     background: linear-gradient(
         135deg,
         #fff0f5 0%,
@@ -102,7 +107,11 @@ body{
     left:50%;
     transform:translate(-50%,-50%);
     text-align:center;
-    z-index:5;
+    z-index:20;
+
+    width:90%;
+    max-width:500px;
+    padding:20px;
 }
 
 .center-text h1{
@@ -159,15 +168,44 @@ body{
     padding:40px;
     border-radius:30px;
     max-width:500px;
+    width:90%;
+    max-height:80vh;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
     margin:20px;
     text-align:center;
     box-shadow:0 20px 60px rgba(255,105,180,0.5);
     animation:popIn 0.4s ease;
+
+    scrollbar-width:thin;
+    scrollbar-color:#ff69b4 #ffe4ef;
+}
+
+.modal-content::-webkit-scrollbar{
+    width:8px;
+}
+
+.modal-content::-webkit-scrollbar-track{
+    background:#ffe4ef;
+    border-radius:10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+    background:#ff69b4;
+    border-radius:10px;
 }
 
 @keyframes popIn{
-    0%{transform:scale(0.5);opacity:0;}
-    100%{transform:scale(1);opacity:1;}
+    0%{
+        transform:scale(0.5);
+        opacity:0;
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
 }
 
 .modal-content h2{
@@ -210,6 +248,7 @@ body{
     border-radius:20px;
     box-shadow:0 10px 25px rgba(255,105,180,0.3);
     overflow:hidden;
+    z-index:5;
 }
 
 .photo img{
@@ -224,7 +263,7 @@ body{
     height:110px;
 }
 
-/* POZYCJE */
+/* KOMPUTER */
 .p1{top:8%;left:7%;transform:rotate(-8deg);}
 .p2{top:15%;right:8%;transform:rotate(7deg);}
 .p3{bottom:12%;left:10%;transform:rotate(6deg);}
@@ -242,6 +281,7 @@ body{
     position:absolute;
     font-size:45px;
     opacity:0.6;
+    z-index:50;
 }
 
 .r1{top:20px;left:20px;}
@@ -254,8 +294,25 @@ body{
 
     body{
         overflow-x:hidden;
-        overflow-y:auto;
         padding:15px;
+        min-height:1100px;
+    }
+
+    .border-line-left,
+    .border-line-right{
+        display:none;
+    }
+
+    .border-line-top{
+        left:15px;
+        right:15px;
+        top:15px;
+    }
+
+    .border-line-bottom{
+        left:15px;
+        right:15px;
+        bottom:15px;
     }
 
     .center-text{
@@ -263,86 +320,110 @@ body{
         top:auto;
         left:auto;
         transform:none;
-        margin:180px auto 220px auto;
+
+        width:100%;
+        max-width:100%;
+
+        margin-top:220px;
+        margin-bottom:120px;
+
+        z-index:20;
     }
 
     .center-text h1{
-        font-size:2.3rem;
+        font-size:2.2rem;
         line-height:1.2;
     }
 
     .center-text h2{
         font-size:1.2rem;
-        margin-top:10px;
     }
 
     .wishes-btn{
         font-size:1rem;
-        padding:14px 28px;
+        padding:14px 24px;
     }
 
     .photo{
-        width:105px;
-        height:105px;
+        width:100px;
+        height:100px;
     }
 
     .small{
-        width:70px;
-        height:70px;
+        width:68px;
+        height:68px;
     }
 
-    /* GÓRA */
-    .p1{top:70px;left:10px;}
-    .p2{top:70px;right:10px;}
+    .p1{
+        top:70px;
+        left:10px;
+        transform:rotate(-6deg);
+    }
 
-    .s1{top:30px;left:38%;}
-    .s3{top:40px;right:25%;}
+    .p2{
+        top:70px;
+        right:10px;
+        transform:rotate(6deg);
+    }
 
-    /* ŚRODEK */
-    .p5{top:320px;left:0;}
-    .p6{top:320px;right:0;}
+    .s1{
+        top:40px;
+        left:50%;
+        transform:translateX(-50%) rotate(-5deg);
+    }
 
-    /* DÓŁ */
-    .p3{bottom:70px;left:15px;}
-    .p4{bottom:70px;right:15px;}
+    .s3{
+        top:150px;
+        left:50%;
+        transform:translateX(-50%) rotate(5deg);
+    }
 
-    .s4{bottom:30px;left:25%;}
-    .s2{bottom:30px;right:25%;}
+    .p5{
+        top:420px;
+        left:5px;
+    }
+
+    .p6{
+        top:420px;
+        right:5px;
+    }
+
+    .p3{
+        top:620px;
+        left:15px;
+    }
+
+    .p4{
+        top:620px;
+        right:15px;
+    }
+
+    .s4{
+        top:760px;
+        left:28%;
+    }
+
+    .s2{
+        top:760px;
+        right:28%;
+    }
+
+    .ribbon{
+        font-size:36px;
+    }
 
     .modal-content{
-        padding:22px;
         width:90%;
-    }
-
-    .modal-content h2{
-        font-size:1.8rem;
+        max-height:80vh;
+        overflow-y:auto;
+        padding:25px;
     }
 
     .modal-content p{
         font-size:1rem;
-        line-height:1.6;
-    }
-
-    .ribbon{
-        font-size:38px;
+        line-height:1.7;
     }
 }
-
-/* PASEK PRZEWIJANIA */
-.modal-content::-webkit-scrollbar{
-    width:8px;
-}
-
-.modal-content::-webkit-scrollbar-track{
-    background:#ffe4ef;
-    border-radius:10px;
-}
-
-.modal-content::-webkit-scrollbar-thumb{
-    background:#ff69b4;
-    border-radius:10px;
-}
-
 </style>
 </head>
 
@@ -373,7 +454,10 @@ body{
 <div class="center-text">
     <h1>🎂 Happy Birthday 🎂</h1>
     <h2>Raika & Ragi 💖</h2>
-    <button class="wishes-btn" onclick="openWishes()">✨ Kliknij po życzenia ✨</button>
+
+    <button class="wishes-btn" onclick="openWishes()">
+        ✨ Kliknij po życzenia ✨
+    </button>
 </div>
 
 <!-- ZDJĘCIA -->
@@ -392,9 +476,11 @@ body{
 <!-- MODAL -->
 <div class="modal-overlay" id="wishesModal" onclick="closeWishes(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
+
         <h2>🎉 Życzenia dla Sigmy🎉</h2>
+
         <p>
-            Droga Ragi! 💕<br><br>
+             Droga Ragi! 💕<br><br>
             Tak wiem, zapewne jesteś zła, przejdzie ci jak zawsze, ale kochamy cię dobrze o tym wiesz <33 <br>
             Dziś twoje znienawidzone święto, ale mam nadzieję, że choć troszkę je polubisz niż dotychczas. <br>
 			Ja(Hiroshi) życzę tobie dużo kart Shu i Miki <br>
@@ -409,18 +495,31 @@ body{
             
             Sto lat!! 🎂💖
         </p>
-        <button class="close-btn" onclick="closeWishes(event)">Zamknij 💝</button>
+
+        <button class="close-btn" onclick="closeWishes(event)">
+            Zamknij 💝
+        </button>
+
     </div>
 </div>
 
 <script>
 function openWishes(){
-    document.getElementById('wishesModal').classList.add('active');
+    document
+        .getElementById('wishesModal')
+        .classList.add('active');
 }
 
 function closeWishes(e){
-    if(e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')){
-        document.getElementById('wishesModal').classList.remove('active');
+
+    if(
+        e.target.classList.contains('modal-overlay') ||
+        e.target.classList.contains('close-btn')
+    ){
+
+        document
+            .getElementById('wishesModal')
+            .classList.remove('active');
     }
 }
 </script>
@@ -429,7 +528,9 @@ function closeWishes(e){
 
 <script>
 document.addEventListener("click", function(){
+
     const audio = document.getElementById("bgMusic");
+
     if(audio.paused){
         audio.play();
     }
@@ -438,3 +539,4 @@ document.addEventListener("click", function(){
 
 </body>
 </html>
+```
