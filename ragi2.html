@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Quicksand',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    position:relative;
+
+    /* ✔️ ORYGINALNE TŁO – BEZ ŻADNEGO ZDJĘCIA */
+    background: linear-gradient(
+        135deg,
+        #fff0f5 0%,
+        #ffd1dc 25%,
+        #ffb6c1 50%,
+        #ffc0cb 75%,
+        #ffe4e9 100%
+    );
+}
+
+/* RAMKI */
+.border-line-top{
+    position:absolute;
+    top:20px;
+    left:60px;
+    right:60px;
+    height:8px;
+    border-radius:10px;
+    background:linear-gradient(to right,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+.border-line-bottom{
+    position:absolute;
+    bottom:20px;
+    left:60px;
+    right:60px;
+    height:8px;
+    border-radius:10px;
+    background:linear-gradient(to right,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+.border-line-left{
+    position:absolute;
+    top:60px;
+    bottom:60px;
+    left:20px;
+    width:8px;
+    border-radius:10px;
+    background:linear-gradient(to bottom,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+.border-line-right{
+    position:absolute;
+    top:60px;
+    bottom:60px;
+    right:20px;
+    width:8px;
+    border-radius:10px;
+    background:linear-gradient(to bottom,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+/* SERCA */
+.bg-hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:0;
+}
+
+.heart{
+    position:absolute;
+    font-size:30px;
+    opacity:0.4;
+    animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0px);}
+    50%{transform:translateY(-20px);}
+}
+
+/* TEKST */
+.center-text{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:5;
+}
+
+.center-text h1{
+    font-family:'Pacifico',cursive;
+    font-size:4rem;
+    color:#ff4fa0;
+    text-shadow:3px 3px 10px rgba(255,255,255,0.7);
+}
+
+.center-text h2{
+    margin-top:10px;
+    font-size:2rem;
+    color:#d63384;
+}
+
+.wishes-btn{
+    margin-top:25px;
+    padding:15px 35px;
+    font-size:1.2rem;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(135deg,#ff69b4,#ff1493,#ff69b4);
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,105,180,0.4);
+    transition:all 0.3s ease;
+}
+
+.wishes-btn:hover{
+    transform:scale(1.08);
+}
+
+/* MODAL */
+.modal-overlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:100;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-overlay.active{
+    display:flex;
+}
+
+.modal-content{
+    background:linear-gradient(135deg,#fff0f5,#ffd1dc,#ffb6c1);
+    padding:40px;
+    border-radius:30px;
+    max-width:500px;
+    margin:20px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(255,105,180,0.5);
+    animation:popIn 0.4s ease;
+}
+
+@keyframes popIn{
+    0%{transform:scale(0.5);opacity:0;}
+    100%{transform:scale(1);opacity:1;}
+}
+
+.modal-content h2{
+    font-family:'Pacifico',cursive;
+    font-size:2.5rem;
+    color:#ff1493;
+    margin-bottom:20px;
+}
+
+.modal-content p{
+    font-size:1.2rem;
+    color:#d63384;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.close-btn{
+    padding:12px 30px;
+    font-size:1rem;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(135deg,#ff69b4,#ff1493);
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.close-btn:hover{
+    transform:scale(1.05);
+}
+
+/* ZDJĘCIA */
+.photo{
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:white;
+    padding:10px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(255,105,180,0.3);
+    overflow:hidden;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.small{
+    width:110px;
+    height:110px;
+}
+
+/* POZYCJE */
+.p1{top:8%;left:7%;transform:rotate(-8deg);}
+.p2{top:15%;right:8%;transform:rotate(7deg);}
+.p3{bottom:12%;left:10%;transform:rotate(6deg);}
+.p4{bottom:10%;right:12%;transform:rotate(-7deg);}
+.p5{top:38%;left:2%;transform:rotate(-10deg);}
+.p6{top:38%;right:2%;transform:rotate(10deg);}
+
+.s1{top:5%;left:42%;transform:rotate(-8deg);}
+.s2{bottom:6%;right:42%;transform:rotate(8deg);}
+.s3{top:5%;right:30%;transform:rotate(5deg);}
+.s4{bottom:6%;left:30%;transform:rotate(-5deg);}
+
+/* KOKARDKI */
+.ribbon{
+    position:absolute;
+    font-size:45px;
+    opacity:0.6;
+}
+
+.r1{top:20px;left:20px;}
+.r2{top:20px;right:20px;}
+.r3{bottom:20px;left:20px;}
+.r4{bottom:20px;right:20px}
+
+/* TELEFONY */
+@media(max-width:900px){
+
+    body{
+        overflow-x:hidden;
+        overflow-y:auto;
+        padding:15px;
+    }
+
+    .center-text{
+        position:relative;
+        top:auto;
+        left:auto;
+        transform:none;
+        margin:180px auto 220px auto;
+    }
+
+    .center-text h1{
+        font-size:2.3rem;
+        line-height:1.2;
+    }
+
+    .center-text h2{
+        font-size:1.2rem;
+        margin-top:10px;
+    }
+
+    .wishes-btn{
+        font-size:1rem;
+        padding:14px 28px;
+    }
+
+    .photo{
+        width:105px;
+        height:105px;
+    }
+
+    .small{
+        width:70px;
+        height:70px;
+    }
+
+    /* GÓRA */
+    .p1{top:70px;left:10px;}
+    .p2{top:70px;right:10px;}
+
+    .s1{top:30px;left:38%;}
+    .s3{top:40px;right:25%;}
+
+    /* ŚRODEK */
+    .p5{top:320px;left:0;}
+    .p6{top:320px;right:0;}
+
+    /* DÓŁ */
+    .p3{bottom:70px;left:15px;}
+    .p4{bottom:70px;right:15px;}
+
+    .s4{bottom:30px;left:25%;}
+    .s2{bottom:30px;right:25%;}
+
+    .modal-content{
+        padding:22px;
+        width:90%;
+    }
+
+    .modal-content h2{
+        font-size:1.8rem;
+    }
+
+    .modal-content p{
+        font-size:1rem;
+        line-height:1.6;
+    }
+
+    .ribbon{
+        font-size:38px;
+    }
+}
+
+/* PASEK PRZEWIJANIA */
+.modal-content::-webkit-scrollbar{
+    width:8px;
+}
+
+.modal-content::-webkit-scrollbar-track{
+    background:#ffe4ef;
+    border-radius:10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+    background:#ff69b4;
+    border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- RAMKI -->
+<div class="border-line-top"></div>
+<div class="border-line-bottom"></div>
+<div class="border-line-left"></div>
+<div class="border-line-right"></div>
+
+<!-- SERCA -->
+<div class="bg-hearts">
+    <div class="heart" style="top:10%;left:15%;">💖</div>
+    <div class="heart" style="top:20%;right:20%;">💕</div>
+    <div class="heart" style="bottom:20%;left:25%;">💗</div>
+    <div class="heart" style="bottom:15%;right:15%;">💞</div>
+    <div class="heart" style="top:50%;left:45%;">💘</div>
+</div>
+
+<!-- KOKARDKI -->
+<div class="ribbon r1">🎀</div>
+<div class="ribbon r2">🎀</div>
+<div class="ribbon r3">🎀</div>
+<div class="ribbon r4">🎀</div>
+
+<!-- TEKST -->
+<div class="center-text">
+    <h1>🎂 Happy Birthday 🎂</h1>
+    <h2>Raika & Ragi 💖</h2>
+    <button class="wishes-btn" onclick="openWishes()">✨ Kliknij po życzenia ✨</button>
+</div>
+
+<!-- ZDJĘCIA -->
+<div class="photo p1"><img src="vx.png"></div>
+<div class="photo p2"><img src="kr.jpg"></div>
+<div class="photo p3"><img src="ka1.png"></div>
+<div class="photo p4"><img src="vx1.jpeg"></div>
+<div class="photo p5"><img src="kr1.jpg"></div>
+<div class="photo p6"><img src="ka.jpg"></div>
+
+<div class="photo small s1"><img src="ra1.png"></div>
+<div class="photo small s2"><img src="ra2.png"></div>
+<div class="photo small s3"><img src="r1.png"></div>
+<div class="photo small s4"><img src="r2.png"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="wishesModal" onclick="closeWishes(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h2>🎉 Życzenia dla Sigmy🎉</h2>
+        <p>
+            Droga Ragi! 💕<br><br>
+            Tak wiem, zapewne jesteś zła, przejdzie ci jak zawsze, ale kochamy cię dobrze o tym wiesz <33 <br>
+            Dziś twoje znienawidzone święto, ale mam nadzieję, że choć troszkę je polubisz niż dotychczas. <br>
+			Ja(Hiroshi) życzę tobie dużo kart Shu i Miki <br>
+			oraz kogokolwiek kogo tylko zechcesz.<br>
+			Laptopa bądź komputer byś mogła grać z nami w mc.🌸<br>
+            By twoje marzenia się spełniły oraz przede wszystkim zdrowia.<br>
+			Powiedziałabym jeszcze o twoim uśmiechu, ale on jak zawsze 
+			jest cudowny, patrząc na niego można odrazu zapomnieć o problemach.<br>
+			Mogłabym napisać więcej, ale jest za dużo do pisania tych rzeczy, zapewne i tak bym <br>
+			zapomniała wymienić najważniejszej rzeczy.<br><br> 
+            Bez pomocy dziewczyn chyba by mi się nie udało zrobić tej strony…<br> <br>
+            
+            Sto lat!! 🎂💖
+        </p>
+        <button class="close-btn" onclick="closeWishes(event)">Zamknij 💝</button>
+    </div>
+</div>
+
+<script>
+function openWishes(){
+    document.getElementById('wishesModal').classList.add('active');
+}
+
+function closeWishes(e){
+    if(e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')){
+        document.getElementById('wishesModal').classList.remove('active');
+    }
+}
+</script>
+
+<audio id="bgMusic" src="hpp.mp3" autoplay loop></audio>
+
+<script>
+document.addEventListener("click", function(){
+    const audio = document.getElementById("bgMusic");
+    if(audio.paused){
+        audio.play();
+    }
+});
+</script>
+
+</body>
+</html>
