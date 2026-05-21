@@ -263,31 +263,118 @@ body{
     height:110px;
 }
 
-/* KOMPUTER */
-.p1{top:8%;left:7%;transform:rotate(-8deg);}
-.p2{top:15%;right:8%;transform:rotate(7deg);}
-.p3{bottom:12%;left:10%;transform:rotate(6deg);}
-.p4{bottom:10%;right:12%;transform:rotate(-7deg);}
-.p5{top:38%;left:2%;transform:rotate(-10deg);}
-.p6{top:38%;right:2%;transform:rotate(10deg);}
+/* =========================
+   KOMPUTER / DUŻE EKRANY
+========================= */
+@media(min-width:901px){
 
-.s1{top:5%;left:42%;transform:rotate(-8deg);}
-.s2{bottom:6%;right:42%;transform:rotate(8deg);}
-.s3{top:5%;right:30%;transform:rotate(5deg);}
-.s4{bottom:6%;left:30%;transform:rotate(-5deg);}
+    .center-text{
+        width:700px;
+        max-width:700px;
+        z-index:20;
+    }
 
-/* KOKARDKI */
-.ribbon{
-    position:absolute;
-    font-size:45px;
-    opacity:0.6;
-    z-index:50;
+    .center-text h1{
+        font-size:4rem;
+        line-height:1.2;
+    }
+
+    .center-text h2{
+        font-size:2rem;
+        margin-top:12px;
+    }
+
+    .wishes-btn{
+        margin-top:28px;
+    }
+
+    /* ZDJĘCIA */
+    .photo{
+        width:150px;
+        height:150px;
+    }
+
+    .small{
+        width:90px;
+        height:90px;
+    }
+
+    /* GÓRA */
+    .p1{
+        top:7%;
+        left:6%;
+        transform:rotate(-7deg);
+    }
+
+    .p2{
+        top:10%;
+        right:6%;
+        transform:rotate(7deg);
+    }
+
+    .s1{
+        top:4%;
+        left:43%;
+        transform:rotate(-6deg);
+    }
+
+    .s3{
+        top:6%;
+        right:30%;
+        transform:rotate(6deg);
+    }
+
+    /* ŚRODEK */
+    .p5{
+        top:38%;
+        left:2%;
+        transform:rotate(-8deg);
+    }
+
+    .p6{
+        top:38%;
+        right:2%;
+        transform:rotate(8deg);
+    }
+
+    /* DÓŁ */
+    .p3{
+        bottom:10%;
+        left:8%;
+        transform:rotate(6deg);
+    }
+
+    .p4{
+        bottom:10%;
+        right:8%;
+        transform:rotate(-6deg);
+    }
+
+    .s4{
+        bottom:5%;
+        left:30%;
+        transform:rotate(-5deg);
+    }
+
+    .s2{
+        bottom:5%;
+        right:30%;
+        transform:rotate(5deg);
+    }
+
+    /* KOKARDKI */
+    .ribbon{
+        font-size:42px;
+        z-index:50;
+    }
+
+    /* MODAL */
+    .modal-content{
+        max-width:550px;
+        max-height:80vh;
+        overflow-y:auto;
+    }
 }
-
-.r1{top:20px;left:20px;}
-.r2{top:20px;right:20px;}
-.r3{bottom:20px;left:20px;}
-.r4{bottom:20px;right:20px}
 
 /* TELEFONY */
 @media(max-width:900px){
